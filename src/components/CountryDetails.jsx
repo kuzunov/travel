@@ -11,20 +11,14 @@ function CountryDetails(countryCode) {
     if (cc.country.name === "Loading" || data.country.name !== cc.country.name)
       setCountry(data);
   }
-  //setCountry(country);
   return (
     <p>
       {cc.country.name}//
       {cc.country.native}//
       {cc.country.phone}//
       {cc.country.currency}//
-      {/* {cc.country.languages.map(l => {
-        <p>{l.name}</p>;
-      })} */}
+      {console.log(cc.country.languages)}
     </p>
   );
-  //} else {
-  //   return <p>Choose country</p>;
-  // }
 }
 export default CountryDetails;

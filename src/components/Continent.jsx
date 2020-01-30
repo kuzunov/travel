@@ -1,6 +1,4 @@
 import React from "react";
-//import Fetch from "./Fetch";
-//import { GET_CONTINENTS } from "./Queries.jsx";
 
 function Continent(props) {
   return (

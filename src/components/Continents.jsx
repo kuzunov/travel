@@ -14,18 +14,10 @@ function Continents(props) {
   const [c, setContinents] = useState({
     continents: [{ name: "Loading", countries: [] }]
   });
-  //const { continents } = Fetch(GET_CONTINENTS);
-  //setContinents(continents);
-  //setContinents(continents);
   let dataC = Fetch(GET_CONTINENTS);
   if (dataC !== "l" && dataC !== "r" && c.continents[0].name === "Loading") {
     setContinents(dataC);
   }
-  //console.log(continents);
-  //setContinents(continents);
-  // console.log(continents);
-
-  //continents = .continents;
   return (
     <React.Fragment>
       {c.continents.map(con => (
@@ -37,9 +29,5 @@ function Continents(props) {
       ))}
     </React.Fragment>
   );
-  // const continent = Fetch(params);
-  // console.log(continent);
-  // let { name, countries } = continent;
-  // return <p>Name:{name}</p>;
 }
 export default Continents;
