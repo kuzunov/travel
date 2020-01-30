@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Continent from "./Continent";
 import { GET_CONTINENTS } from "./Queries.jsx";
 import Fetch from "./Fetch";
@@ -11,17 +11,24 @@ function Continents(props) {
   //   { code: "NA" },
   //   { code: "SA" }
   // ];
-  //const [c, setContinents] = useState(contCodes);
-  const { continents } = Fetch(GET_CONTINENTS);
+  const [c, setContinents] = useState({
+    continents: [{ name: "Loading", countries: [] }]
+  });
+  //const { continents } = Fetch(GET_CONTINENTS);
   //setContinents(continents);
-  console.log(continents);
+  //setContinents(continents);
+  let dataC = Fetch(GET_CONTINENTS);
+  if (dataC !== "l" && dataC !== "r" && c.continents[0].name === "Loading") {
+    setContinents(dataC);
+  }
+  //console.log(continents);
   //setContinents(continents);
   // console.log(continents);
 
   //continents = .continents;
   return (
     <React.Fragment>
-      {continents.map(con => (
+      {c.continents.map(con => (
         <Continent
           name={con.name}
           listCountries={props.listCountries}

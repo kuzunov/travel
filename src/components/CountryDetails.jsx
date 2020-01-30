@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import Fetch from "./Fetch";
 import { GET_COUNTRYDETAILS } from "./Queries.jsx";
 
 function CountryDetails(countryCode) {
+  const [cc, setCountry] = useState({ country: { name: "Loading" } });
   const vars = { variables: { code: countryCode.countryCode } };
-  const { country } = Fetch(GET_COUNTRYDETAILS, vars);
+  let data = Fetch(GET_COUNTRYDETAILS, vars);
+  let condition = data !== "l" && data !== "r";
+  if (condition) {
+    if (cc.country.name === "Loading" || data.country.name !== cc.country.name)
+      setCountry(data);
+  }
+  //setCountry(country);
   return (
     <p>
-      {country.name}
-      {country.native}
-      {country.phone}
-      {country.currency}
-      {
-        //country.languages.map(l => l.name)}
-      }
+      {cc.country.name}//
+      {cc.country.native}//
+      {cc.country.phone}//
+      {cc.country.currency}//
+      {/* {cc.country.languages.map(l => {
+        <p>{l.name}</p>;
+      })} */}
     </p>
   );
   //} else {
