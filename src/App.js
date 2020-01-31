@@ -4,6 +4,9 @@ import ApolloClient from "apollo-boost";
 import Continents from "./components/Continents";
 import Countries from "./components/Countries.jsx";
 
+import "tabler-react/dist/Tabler.css";
+import { Card } from "tabler-react";
+
 function App() {
   const client = new ApolloClient({
     uri: "https://countries.trevorblades.com/"
@@ -12,10 +15,14 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <React.Fragment>
-        <Continents listCountries={setCountries} />
-        <Countries current={countries} />
-      </React.Fragment>
+      <Card>
+        <Card.Header>
+          <Continents listCountries={setCountries} />
+        </Card.Header>
+        <Card.Body>
+          <Countries current={countries} />
+        </Card.Body>
+      </Card>
     </ApolloProvider>
   );
 }

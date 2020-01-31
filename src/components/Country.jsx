@@ -1,10 +1,15 @@
 import React from "react";
+import { Button } from "tabler-react";
 
 function Country(props) {
   return (
-    <button onClick={() => props.listInfo(props.country.code)}>
+    <Button
+      pill
+      color="secondary"
+      onClick={() => props.listInfo(props.country.code)}
+    >
       {props.country.name}
-    </button>
+    </Button>
   );
 }
 export default Country;

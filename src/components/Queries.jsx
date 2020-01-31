@@ -27,6 +27,7 @@ export const GET_CONTINENTS = gql`
 export const GET_COUNTRYDETAILS = gql`
   query countries($code: String!) {
     country(code: $code) {
+      code
       name
       native
       phone
