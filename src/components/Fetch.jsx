@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/react-hooks";
 
-function Fetch(Q, code) {
-  const { loading, error, data } = useQuery(Q, code);
+function Fetch(Query, queryVars) {
+  const { loading, error, data } = useQuery(Query, queryVars);
   if (loading) return "l";
   if (error) return "r";
   return data;

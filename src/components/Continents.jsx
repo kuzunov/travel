@@ -4,27 +4,24 @@ import { GET_CONTINENTS } from "./Queries.jsx";
 import Fetch from "./Fetch";
 
 function Continents(props) {
-  // const contCodes = [
-  //   { code: "EU" },
-  //   { code: "AS" },
-  //   { code: "AF" },
-  //   { code: "NA" },
-  //   { code: "SA" }
-  // ];
-  const [c, setContinents] = useState({
+  const [continents, setContinents] = useState({
     continents: [{ name: "Loading", countries: [] }]
   });
-  let dataC = Fetch(GET_CONTINENTS);
-  if (dataC !== "l" && dataC !== "r" && c.continents[0].name === "Loading") {
-    setContinents(dataC);
+  let dataContinents = Fetch(GET_CONTINENTS);
+  if (
+    dataContinents !== "l" &&
+    dataContinents !== "r" &&
+    continents.continents[0].name === "Loading"
+  ) {
+    setContinents(dataContinents);
   }
   return (
     <React.Fragment>
-      {c.continents.map(con => (
+      {continents.continents.map(continent => (
         <Continent
-          name={con.name}
+          name={continent.name}
           listCountries={props.listCountries}
-          countries={con.countries}
+          countries={continent.countries}
         />
       ))}
     </React.Fragment>

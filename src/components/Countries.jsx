@@ -20,8 +20,8 @@ function Countries(params) {
           .filter(function(countries) {
             return countries.name.toLowerCase().includes(filter.toLowerCase());
           })
-          .map(c => (
-            <Country country={c} listInfo={setCountry} />
+          .map(country => (
+            <Country country={country} listInfo={setCountry} />
           ))}
       </Button.List>
       <CountryDetails countryCode={currCountry} />
