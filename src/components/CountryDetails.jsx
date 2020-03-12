@@ -1,21 +1,19 @@
 import React, { useState } from "react";
-import Fetch from "./Fetch";
+import { useQuery } from "@apollo/react-hooks";
 import { GET_COUNTRYDETAILS } from "./Queries.jsx";
 import { List } from "tabler-react";
 
-function CountryDetails(countryCode) {
+function CountryDetails(country) {
   const [currentCountry, setCountry] = useState({
     country: { code: "n/a", name: "Choose", languages: [] }
   });
-  const queryVars = { variables: { code: countryCode.countryCode } };
-  let countryData = Fetch(GET_COUNTRYDETAILS, queryVars);
-  let condition = countryData !== "l" && countryData !== "r";
-  if (condition) {
-    if (
-      currentCountry.country.name === "Choose" ||
-      countryData.country.name !== currentCountry.country.name
-    )
-      setCountry(countryData);
+
+  const queryVars = { variables: { code: country.countryCode } };
+  const { loading, error, data } = useQuery(GET_COUNTRYDETAILS, queryVars);
+  //let countryData = Fetch(GET_COUNTRYDETAILS, queryVars);
+  //let condition = countryData !== "l" && countryData !== "r";
+  if (!loading && !error) {
+    if (data.country.name !== currentCountry.country.name) setCountry(data);
   }
   return (
     <List.Group>
@@ -32,10 +30,14 @@ function CountryDetails(countryCode) {
         {currentCountry.country.currency}
       </List.GroupItem>
       <List.GroupItem>
-        <i class={"flag flag-" + currentCountry.country.code.toLowerCase()}></i>
+        <i
+          className={"flag flag-" + currentCountry.country.code.toLowerCase()}
+        ></i>
       </List.GroupItem>
       {currentCountry.country.languages.map(l => (
-        <List.GroupItem icon="globe">{l.name}</List.GroupItem>
+        <List.GroupItem key={l.name} icon="globe">
+          {l.name}
+        </List.GroupItem>
       ))}
     </List.Group>
   );

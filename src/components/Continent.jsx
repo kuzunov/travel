@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button } from "tabler-react";
+import { Button } from "tabler-react";
 
 function Continent(props) {
   return (

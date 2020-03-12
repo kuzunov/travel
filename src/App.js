@@ -5,6 +5,7 @@ import Continents from "./components/Continents";
 import Countries from "./components/Countries.jsx";
 
 import "tabler-react/dist/Tabler.css";
+import "./styles.css";
 import { Card } from "tabler-react";
 
 function App() {

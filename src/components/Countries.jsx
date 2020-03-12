@@ -7,7 +7,6 @@ function Countries(params) {
   const [filter, setFilter] = useState("");
   const [currCountry, setCountry] = useState("");
   const countries = params.current;
-
   return (
     <React.Fragment>
       <Form.Input
@@ -15,13 +14,17 @@ function Countries(params) {
         value={filter}
         onChange={event => setFilter(event.target.value)}
       />
-      <Button.List>
+      <Button.List className="countries">
         {countries
           .filter(function(countries) {
             return countries.name.toLowerCase().includes(filter.toLowerCase());
           })
           .map(country => (
-            <Country country={country} listInfo={setCountry} />
+            <Country
+              key={country.code}
+              country={country}
+              listInfo={setCountry}
+            />
           ))}
       </Button.List>
       <CountryDetails countryCode={currCountry} />

@@ -1,24 +1,22 @@
 import React, { useState } from "react";
 import Continent from "./Continent";
 import { GET_CONTINENTS } from "./Queries.jsx";
-import Fetch from "./Fetch";
+import { useQuery } from "@apollo/react-hooks";
 
 function Continents(props) {
   const [continents, setContinents] = useState({
-    continents: [{ name: "Loading", countries: [] }]
+    continents: [{ code: "n/a", name: "Loading", countries: [] }]
   });
-  let dataContinents = Fetch(GET_CONTINENTS);
-  if (
-    dataContinents !== "l" &&
-    dataContinents !== "r" &&
-    continents.continents[0].name === "Loading"
-  ) {
-    setContinents(dataContinents);
+  const { loading, error, data } = useQuery(GET_CONTINENTS);
+
+  if (!loading && !error && continents.continents[0].name === "Loading") {
+    setContinents(data);
   }
   return (
     <React.Fragment>
       {continents.continents.map(continent => (
         <Continent
+          key={continent.code}
           name={continent.name}
           listCountries={props.listCountries}
           countries={continent.countries}
